@@ -1,36 +1,63 @@
-import { useGetAllProductQuery } from "@/redux/api/productApi/ProductApi";
+import { useGetProductDetailsQuery } from "@/redux/api/productApi/ProductApi";
+import { addToCart } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import React from "react";
 import { useParams } from "react-router-dom";
 
-const ProductDetails = () => {
-  const { id } = useParams();
-  const { data: products, error, isLoading } = useGetAllProductQuery(undefined);
+const ProductDetails: React.FC = () => {
+  const dispatch = useAppDispatch();
+ // const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
-  console.log("Product ID from URL:", id);
-  console.log("Fetched products:", products);
+  const { id } = useParams<{ id: string }>();
+  const {
+    data: product,
+    error,
+    isLoading,
+  } = useGetProductDetailsQuery(id || "");
+  console.log("my data", product);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-  // Check if product exists in the fetched products
-  const product = products?.data?.find((product) => {
-    console.log("Comparing product ID:", product.id, "with URL ID:", id);
-    return product.id === id; // Convert IDs to string for comparison
-  });
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading product details</p>;
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    console.log("cart", product);
+  };
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <div>
-        <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <div className="flex flex-col md:flex-row">
+        {/* Product Image */}
+        <div className="md:w-1/2">
+          <img
+            src={product?.data?.image}
+            alt={product?.data?.name}
+            className="rounded-lg w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Product Details */}
+        <div className="md:w-1/2 md:pl-8 mt-6 md:mt-0">
+          <h1 className="text-3xl font-semibold text-gray-900">
+            {product?.data?.name}
+          </h1>
+          <p className="text-gray-700 text-lg mt-4">
+            {product?.data?.description}
+          </p>
+          <p className="text-2xl font-bold text-green-600 mt-6">
+            ${product?.data?.price}
+          </p>
+
+          <button
+            onClick={(e) => {
+              handleAddToCart(product);
+            }}
+            className="mt-6 bg-green-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-green-800 transition duration-300"
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
-      {/* <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
-      <img
-        src={product.imageUrl}
-        alt={product.name}
-        className="w-full h-auto mb-4"
-      />
-      <p className="text-lg mb-4">{product.description}</p>
-      <p className="text-xl font-semibold mb-4">${product.price}</p> */}
-      {/* Add more details as needed */}
     </div>
   );
 };

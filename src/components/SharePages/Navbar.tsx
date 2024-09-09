@@ -7,9 +7,6 @@ const Navbar = () => {
   const products = useAppSelector((store) => store.cart.products);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Dummy cart count (you can replace this with your cart state)
-  const cartItemCount = 2;
-
   return (
     <nav className="bg-blue-500 p-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -47,7 +44,7 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-6 items-center">
           <Link to="/cart" className="text-white relative">
             <FaShoppingCart size={24} />
-            {cartItemCount > 0 && (
+            {products > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 {products.length}
               </span>
@@ -96,7 +93,7 @@ const Navbar = () => {
             className="block text-white text-center hover:text-gray-200"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Cart ({cartItemCount})
+            Cart ({products})
           </Link>
           <Link
             to="/login"

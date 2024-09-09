@@ -2,9 +2,8 @@ import ProductCard from "../Product/ProductCard";
 import { useGetAllProductQuery } from "@/redux/api/productApi/ProductApi";
 
 const Product = () => {
- 
   const { data: products } = useGetAllProductQuery(undefined);
-
+  console.log("azir ", products);
   return (
     <div className="container">
       <h1 className="text-4xl text-center font-bold my-2">All Products</h1>
