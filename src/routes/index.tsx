@@ -1,7 +1,9 @@
 import App from "@/App";
 import ContactPage from "@/components/shareHome/Contact";
+import About from "@/pages/About/About";
 import Cart from "@/pages/Cart/Cart";
 import Home from "@/pages/Home/Home";
+import CheckOutPage from "@/pages/Payment/checkout";
 import ProductDetails from "@/pages/Product/ProductDetails";
 import Product from "@/pages/Product/ProductPage";
 import Login from "@/pages/User/Login";
@@ -31,8 +33,16 @@ export const router = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: "/checkout",
+        element: <CheckOutPage />,
+      },
+      {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/login",

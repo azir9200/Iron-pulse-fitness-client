@@ -1,11 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { baseApi } from "./api/baseApi/baseApi";
+
 import cartReducer from "./features/cartSlice";
 import registerReducer from "./features/registerSlice";
 import loginReducer from "./features/loginSlice";
-import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import userReducer from "./features/userSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import { baseApi } from "./api/baseApi/baseApi";
 
 const persistUserConfig = {
   key: "user",
@@ -22,9 +32,11 @@ export const store = configureStore({
     user: persistedUserReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(
-      baseApi.middleware
-    ),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(baseApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

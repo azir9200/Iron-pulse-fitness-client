@@ -4,7 +4,7 @@ import OrderSummary from "@/components/SharePages/OrderSummary";
 
 const Cart = () => {
   const products = useAppSelector((store) => store.cart.products);
-
+  console.log("cart Products ", products);
   return (
     <div className="container mt-10 mx-auto">
       Cart Details

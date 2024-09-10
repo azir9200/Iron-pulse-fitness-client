@@ -3,6 +3,9 @@ import { setEmail, setPassword } from "@/redux/features/loginSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
+import "./toastStyles.css";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -10,7 +13,7 @@ const Login = () => {
   // const { token } = useAppSelector((state: RootState) => state.user);
   // console.log("tok tok token", token);
 
-  const [login] = useLoginMutation();
+  const [login, { isError, isSuccess }] = useLoginMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +21,13 @@ const Login = () => {
     console.log("user azir=>", data);
     const { accessToken } = data?.data;
     console.log(accessToken);
+    if (isSuccess) {
+      // Show success toast
+      toast.success("Registration successful!");
+    } else if (isError) {
+      // Show error toast
+      toast.error("Registration failed! Please try again.");
+    }
   };
 
   return (
@@ -55,6 +65,7 @@ const Login = () => {
             </button>
           </div>
         </form>
+        <ToastContainer position="top-right" autoClose={2000} />
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <Link to="/register" className="text-blue-500 hover:underline">

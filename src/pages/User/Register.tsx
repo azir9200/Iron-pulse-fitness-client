@@ -9,6 +9,10 @@ import {
 } from "@/redux/features/registerSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
+import "./toastStyles.css";
+
 
 const Register: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,12 +20,19 @@ const Register: React.FC = () => {
     (state) => state.register
   );
 
-  const [signUp] = useSignUpMutation();
+  const [signUp, { isError, isSuccess }] = useSignUpMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const user = await signUp({ name, email, role, phone, address, password });
     console.log("user=>", user);
+    if (isSuccess) {
+      // Show success toast
+      toast.success("Registration successful!");
+    } else if (isError) {
+      // Show error toast
+      toast.error("Registration failed! Please try again.");
+    }
   };
 
   return (
@@ -96,6 +107,7 @@ const Register: React.FC = () => {
             </button>
           </div>
         </form>
+        <ToastContainer position="top-right" autoClose={2000} />
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-500 hover:underline">

@@ -1,6 +1,14 @@
+import { addToCart } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: any }) => {
+  const dispatch = useAppDispatch();
+  
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className="relative">
       <div className="border rounded-lg shadow-lg overflow-hidden bg-grey transition-transform transform hover:scale-105 hover:shadow-2xl flex flex-col h-full">
@@ -17,7 +25,17 @@ const ProductCard = ({ product }: { product: any }) => {
 
             <p className="text-gray-700  flex-grow">{product.description}</p>
             <p className="text-lg font-bold text-green-600 ">{product.price}</p>
-
+            <div className=" flex justify-center gap-4 bg-slate-300">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddToCart(product);
+                }}
+                className="bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-800 transition duration-300 shadow-md hover:shadow-lg"
+              >
+                Add to Cart
+              </button>
+            </div>
             <Link
               to={`/product/${product._id}`}
               className="bg-black text-white font-semibold p px-4 rounded-lg hover:bg-green-800 transition duration-300 shadow-md hover:shadow-lg"

@@ -1,0 +1,22 @@
+/* Center toast notifications on the page */
+.Toastify__toast-container {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: fixed !important;
+  }
+  
+  /* Custom toast background color and text color */
+  .Toastify__toast--default {
+    background: linear-gradient(135deg, #4a90e2, #d0d0d0);
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 16px;
+  }
+  
+  /* Custom toast icon color */
+  .Toastify__toast-icon {
+    color: white;
+  }
+  
