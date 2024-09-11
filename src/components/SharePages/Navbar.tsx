@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-500 p-4 fixed top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex  items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-white text-2xl font-bold">
           FitGear

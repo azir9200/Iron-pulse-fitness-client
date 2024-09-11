@@ -44,7 +44,7 @@ const OrderSummary = () => {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            navigate("/checkout");
+            navigate("/check-pay");
           }}
           className="bg-green-600 px-3 py-2 text-white  mt-2 rounded-md w-full text-xs flex justify-between items-center"
         >

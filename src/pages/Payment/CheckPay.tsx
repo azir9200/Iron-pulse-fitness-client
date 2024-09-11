@@ -1,39 +1,60 @@
 import { useCreteOrderMutation } from "@/redux/api/orderApi/orderApi";
 import { useAppSelector } from "@/redux/hooks";
 
-const CheckOutPage = () => {
+const CheckPay = () => {
   const [createOrder] = useCreteOrderMutation();
 
   const cartItems = useAppSelector((store) => store.cart.products);
-  // const user = useAppSelector((store) => store.user.user);
-  const user = useAppSelector((store) => store.register);
+  const user = useAppSelector((store) => store.user.user);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      user,
-      products: cartItems.map((item: any) => ({
-        product: item._id,
-        quantity: item.quantity,
-      })),
-    };
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
 
-    try {
-      const res = await createOrder(data).unwrap();
-      if (res.success) {
-        console.log("Order created:", res);
-      } else {
-        console.error("Order creation failed:", res.message);
-      }
-    } catch (error) {
-      console.error("Error creating order:", error);
-    }
+//     // Only send the user's ID (_id) to the server
+//     const data = {
+//       user: user._id, // This should be the user's ObjectId from the database
+//       products: cartItems.map((item: any) => ({
+//         product: item._id,
+//         quantity: item.quantity,
+//       })),
+//     };
+
+//     try {
+//       const res = await createOrder(data).unwrap();
+//       if (res.success) {
+//         console.log("Order created:", res);
+//       } else {
+//         console.error("Order creation failed:", res.message);
+//       }
+//     } catch (error) {
+//       console.error("Error creating order:", error);
+//     }
+//   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  const data = {
+    user: user._id, // Only pass the user's _id
+    products: cartItems.map((item) => ({
+      product: item._id,
+      quantity: item.quantity,
+    })),
   };
+
+  try {
+    const response = await createOrder(data);
+    console.log('Order created successfully:', response);
+  } catch (error) {
+    console.error('Error creating order:', error);
+  }
+};
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold mb-6">Checkout</h2>
       <form onSubmit={handleSubmit}>
+        {/* Form elements */}
         <div className="mb-8 border p-5 rounded">
           <h3 className="text-xl font-semibold mb-4">User Information</h3>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -44,7 +65,7 @@ const CheckOutPage = () => {
               <input
                 type="text"
                 name="name"
-                value={user.name} // Assuming the user object has a name field
+                value={user.name}
                 readOnly
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
               />
@@ -58,32 +79,6 @@ const CheckOutPage = () => {
                 type="email"
                 name="email"
                 value={user.email}
-                readOnly
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 text-left">
-                Phone
-              </label>
-              <input
-                type="text"
-                name="phone"
-                value={user.phone}
-                readOnly
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 text-left">
-                Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                value={user.address}
                 readOnly
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
               />
@@ -108,7 +103,7 @@ const CheckOutPage = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item: any) => (
+              {cartItems.map((item) => (
                 <tr key={item._id} className="border-b">
                   <td className="py-3 px-4">{item.name}</td>
                   <td className="py-3 px-4">{item.quantity}</td>
@@ -132,4 +127,4 @@ const CheckOutPage = () => {
   );
 };
 
-export default CheckOutPage;
+export default CheckPay;
