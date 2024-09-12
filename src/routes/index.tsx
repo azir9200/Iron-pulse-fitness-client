@@ -28,7 +28,11 @@ export const router = createBrowserRouter([
         path: "/product/:id",
         element: <ProductDetails />,
       },
-
+      {
+        path: "/product/:category",
+        element: <ProductDetails />,
+      },
+      
       {
         path: "/cart",
         element: <Cart />,

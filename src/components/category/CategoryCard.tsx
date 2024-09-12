@@ -10,10 +10,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name, image }) => {
   const navigate = useNavigate();
 
   const handleCategoryClick = () => {
-    // Navigate to Products page and pass the selected category
-    navigate(`/products?category=${name}`);
+    navigate(`/products?category=${encodeURIComponent(name)}`);
   };
-
   return (
     <div
       onClick={handleCategoryClick}
