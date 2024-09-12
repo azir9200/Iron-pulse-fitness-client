@@ -6,9 +6,11 @@ const Cart = () => {
   const products = useAppSelector((store) => store.cart.products);
   console.log("cart Products ", products);
   return (
-    <div className="container mt-10 mx-auto">
-      Cart Details
-      <div className="flex lg:flex-row flex-col-reverse justify-center border border-red-600 p-2 lg:space-x-40 ">
+    <div className="mx-auto mt-16 py-4 left-0 w-full bg-slate-300 ">
+      <h1 className="text-4xl text-white text-center font-bold p-2 my-2 w-full bg-slate-600 mt-2">
+        Cart Details
+      </h1>
+      <div className=" justify-center p-2 lg:space-x-40 ">
         <div className="space-y-5 lg:mt-0 mt-5">
           {products.length ? (
             products.map((product: any) => (

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
-  
+
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
@@ -25,7 +25,26 @@ const ProductCard = ({ product }: { product: any }) => {
 
             <p className="text-gray-700  flex-grow">{product.description}</p>
             <p className="text-lg font-bold text-green-600 ">{product.price}</p>
-            <div className=" flex justify-center gap-4 bg-slate-300">
+
+            <div className="flex gap-4">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddToCart(product);
+                }}
+                className="bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg"
+              >
+                Add to Cart
+              </button>
+              <Link
+                to={`/product/${product._id}`}
+                className="bg-black text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-800 transition duration-300 shadow-md hover:shadow-lg"
+              >
+                View Details
+              </Link>
+            </div>
+
+            {/* <div className=" flex justify-center gap-4 bg-slate-300">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -41,7 +60,7 @@ const ProductCard = ({ product }: { product: any }) => {
               className="bg-black text-white font-semibold p px-4 rounded-lg hover:bg-green-800 transition duration-300 shadow-md hover:shadow-lg"
             >
               Click to details
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

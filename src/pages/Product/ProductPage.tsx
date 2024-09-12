@@ -6,7 +6,6 @@ const Product = () => {
   const { data: products } = useGetAllProductQuery(undefined);
   const location = useLocation();
 
-  // Get category from URL query params
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category");
 
@@ -19,8 +18,8 @@ const Product = () => {
     : products?.data;
 
   return (
-    <div className="container mx-auto mt-16 p-4">
-      <h1 className="text-4xl text-center font-bold my-2">
+    <div className=" mx-auto mt-16 py-4 left-0 w-full bg-slate-400 ">
+      <h1 className="text-4xl text-white text-center font-bold p-2 my-2 w-full bg-slate-700">
         {selectedCategory ? `${selectedCategory} Products` : "All Products"}
       </h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">

@@ -10,9 +10,8 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 import "./toastStyles.css";
-
 
 const Register: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +36,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-400 to-blue-200">
-      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
+      <div className="w-full max-w-md p-8 bg-slate-600 shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
           Register
         </h2>

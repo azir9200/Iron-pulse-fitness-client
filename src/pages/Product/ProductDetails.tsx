@@ -30,7 +30,7 @@ const ProductDetails: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className=" mx-auto mt-20 py-4 left-0 w-full  bg-slate-400 ">
       <div className="flex flex-col md:flex-row">
         {/* Product Image */}
         <div className="md:w-1/2">
@@ -44,11 +44,20 @@ const ProductDetails: React.FC = () => {
         {/* Product Details */}
         <div className="md:w-1/2 md:pl-8 mt-6 md:mt-0">
           <h1 className="text-3xl font-semibold text-gray-900">
-            {product?.name}
+            Name of Equipment: {product?.name}
           </h1>
-          <p className="text-gray-700 text-lg mt-4">{product?.description}</p>
-          <p className="text-2xl font-bold text-green-600 mt-6">
-            ${product?.price}
+          <p className="text-slate-900 text-xl mt-4">
+            Product Category: {product?.category}
+          </p>
+          <p className="text-slate-900 text-xl mt-4">
+            {" "}
+            Description of Product: {product?.description}
+          </p>
+          <p className="text-slate-900 text-xl mt-4">
+            $ Product Price: {product?.price}
+          </p>
+          <p className="text-slate-900 text-xl mt-4">
+            Product in Stock Quantity: {product?.stock}
           </p>
 
           <button

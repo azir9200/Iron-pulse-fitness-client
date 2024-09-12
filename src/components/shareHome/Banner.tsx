@@ -10,9 +10,9 @@ const Banner = () => {
       showStatus={false}
       transitionTime={500}
       interval={3000}
-      className="relative h-90"
+      className="relative "
     >
-      <div className="relative h-1/2">
+      <div className="relative h-screen/2">
         <img
           src="https://i.ibb.co/YRvx6Jr/pexels-shotpot-4047156.jpg"
           alt="Banner Image 1"
@@ -35,7 +35,8 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <div className="relative h-1/2">
+
+      <div className="relative h-screen/2">
         <img
           src="https://i.ibb.co/gJBX42t/pexels-victorfreitas-897061.jpg"
           alt="Banner Image 3"
@@ -57,7 +58,7 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="relative h-1/2">
+      <div className="relative h-screen/2">
         <img
           src="https://i.ibb.co/x6LyFyG/pexels-willpicturethis-1954524.jpg"
           alt="Banner Image 4"
@@ -80,8 +81,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-
-      <div className="relative h-1/2">
+      <div className="relative h-screen/2">
         <img
           src="https://i.ibb.co/Xz5FNq3/istockphoto-864793658-1024x1024.jpg"
           alt="Banner Image 5"
@@ -105,7 +105,7 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="relative h-1/2">
+      <div className="relative h-screen/2">
         <img
           src="https://i.ibb.co/QCgTBdc/istockphoto-623174598-1024x1024.jpg"
           alt="Banner Image 6"

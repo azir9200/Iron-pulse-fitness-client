@@ -1,17 +1,19 @@
 import React from "react";
 
 const images = [
-  "https://i.ibb.co/0sh4yTG/fitness1.jpg",
-  "https://i.ibb.co/ys2z3Lj/fitness2.jpg",
-  "https://i.ibb.co/C6szSkr/fitness3.jpg",
-  "https://i.ibb.co/xg1n2FD/fitness4.jpg",
-  "https://i.ibb.co/b6RybXJ/fitness5.jpg",
-  "https://i.ibb.co/Tt6ZTjn/fitness6.jpg",
+  "https://imagizer.imageshack.com/img924/4629/XZAq25.jpg",
+  "https://imagizer.imageshack.com/img923/4648/St7DS1.jpg",
+  "https://imagizer.imageshack.com/img922/5638/nqEUyL.jpg",
+  "https://imagizer.imageshack.com/img924/3928/rIHdTD.jpg",
+  "https://imagizer.imageshack.com/img922/8127/igCFos.jpg",
+  "https://imagizer.imageshack.com/img923/1219/B3Hs72.jpg",
+  "https://imagizer.imageshack.com/img922/9643/9saopo.jpg",
+  "https://imagizer.imageshack.com/img923/7833/iMKjl6.jpg",
 ];
 
 const ImageGallery: React.FC = () => {
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-slate-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Gallery</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

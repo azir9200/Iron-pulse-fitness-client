@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./toastStyles.css";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -23,10 +24,18 @@ const Login = () => {
     console.log(accessToken);
     if (isSuccess) {
       // Show success toast
-      toast.success("Registration successful!");
+      Swal.fire({
+        title: "User Login Successful.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     } else if (isError) {
       // Show error toast
-      toast.error("Registration failed! Please try again.");
+      toast.error("uUser Login failed! Please try again.");
     }
   };
 
@@ -65,7 +74,11 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <ToastContainer position="top-right" autoClose={2000} />
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar
+        />
         <p className="text-sm text-center text-gray-600 mt-4">
           New in here ?{" "}
           <Link to="/register" className="text-blue-500 hover:underline">
