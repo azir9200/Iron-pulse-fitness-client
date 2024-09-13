@@ -33,7 +33,7 @@ export const cartSlice = createSlice({
     },
     updateQuantity: (state: any, action) => {
       const products = state.products.map((product: any) => {
-        if (product.id === action.payload.id) {
+        if (product._id === action.payload._id) {
           if (action.payload.type === "increment") {
             product.quantity += 1;
           } else if (action.payload.type === "decrement") {
@@ -49,7 +49,7 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.payload.id
+        (product) => product._id !== action.payload._id
       );
       state.selectedItems = selectSelectedItems(state);
       console.log("cart count", state.selectedItems);
