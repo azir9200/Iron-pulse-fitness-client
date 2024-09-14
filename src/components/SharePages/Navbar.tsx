@@ -20,25 +20,37 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-6 items-center">
           <Link
             to="/"
-            className="text-white text-2xl font-bold hover:text-black"
+            className="text-white text-base font-medium hover:text-black"
           >
             Home
           </Link>
           <Link
             to="/product"
-            className="text-white text-2xl font-bold hover:text-black"
+            className="text-white text-base font-medium hover:text-black"
           >
             Products
           </Link>
           <Link
+            to="/manage/product"
+            className="text-white text-base font-medium hover:text-black"
+          >
+            Manage Products
+          </Link>
+          <Link
+            to="/product/create"
+            className="text-white text-base font-medium hover:text-black"
+          >
+            Add Product
+          </Link>
+          <Link
             to="/contact"
-            className="text-white text-2xl font-bold hover:text-black"
+            className="text-white text-base font-medium hover:text-black"
           >
             Contact
           </Link>
           <Link
             to="/about"
-            className="text-white text-2xl font-bold hover:text-black"
+            className="text-white  text-base font-medium hover:text-black"
           >
             About
           </Link>
@@ -49,9 +61,9 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search products..."
-            className="p-2 rounded-l-md border-none focus:ring-2 focus:ring-blue-300 text-white text-xl font-bold "
+            className="p-2 rounded-l-md border-none focus:ring-2 focus:ring-blue-300 text-white text-base font-medium "
           />
-          <button className="bg-white text-black p-2 rounded-r-md hover:bg-slate-700 text-xl font-bold">
+          <button className="bg-white text-black p-2 rounded-r-md hover:bg-slate-700 text-base font-medium">
             Search
           </button>
         </div>
@@ -98,6 +110,13 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Products
+          </Link>
+          <Link
+            to="/manage/product"
+            className="block text-white text-center hover:text-gray-700"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Manage Products
           </Link>
           <Link
             to="/contact"

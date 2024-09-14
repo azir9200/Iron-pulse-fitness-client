@@ -43,24 +43,6 @@ const ProductCard = ({ product }: { product: any }) => {
                 View Details
               </Link>
             </div>
-
-            {/* <div className=" flex justify-center gap-4 bg-slate-300">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAddToCart(product);
-                }}
-                className="bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-800 transition duration-300 shadow-md hover:shadow-lg"
-              >
-                Add to Cart
-              </button>
-            </div>
-            <Link
-              to={`/product/${product._id}`}
-              className="bg-black text-white font-semibold p px-4 rounded-lg hover:bg-green-800 transition duration-300 shadow-md hover:shadow-lg"
-            >
-              Click to details
-            </Link> */}
           </div>
         </div>
       </div>

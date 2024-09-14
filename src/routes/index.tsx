@@ -1,9 +1,12 @@
 import App from "@/App";
+import ProtectedRoute from "@/components/Layout/ProtectedRoute";
 import ContactPage from "@/components/shareHome/Contact";
 import About from "@/pages/About/About";
 import Cart from "@/pages/Cart/Cart";
 import Home from "@/pages/Home/Home";
-import CheckOutPage from "@/pages/Payment/checkout";
+import AddProduct from "@/pages/ManageProduct/AddProduct";
+import EditProduct from "@/pages/ManageProduct/EditProduct";
+import ProductList from "@/pages/ManageProduct/ProductList";
 import CheckPay from "@/pages/Payment/CheckPay";
 import ProductDetails from "@/pages/Product/ProductDetails";
 import Product from "@/pages/Product/ProductPage";
@@ -29,10 +32,26 @@ export const router = createBrowserRouter([
         element: <ProductDetails />,
       },
       {
+        path: "/manage/product",
+        element: <ProductList />,
+      },
+      {
+        path: "/product/create",
+        element: (
+          <ProtectedRoute>
+            <AddProduct />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/product/:id",
+        element: <EditProduct />,
+      },
+      {
         path: "/product/:category",
         element: <ProductDetails />,
       },
-      
+
       {
         path: "/cart",
         element: <Cart />,

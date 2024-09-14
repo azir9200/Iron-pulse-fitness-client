@@ -3,7 +3,7 @@ import ProductCard from "../Product/ProductCard";
 import { useGetAllProductQuery } from "@/redux/api/productApi/ProductApi";
 
 const Product = () => {
-  const { data: products } = useGetAllProductQuery(undefined);
+  const { data: products, error, isLoading } = useGetAllProductQuery(undefined);
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
@@ -16,6 +16,8 @@ const Product = () => {
           product.category.toLowerCase() === selectedCategory.toLowerCase()
       )
     : products?.data;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading products</p>;
 
   return (
     <div className=" mx-auto mt-16 py-4 left-0 w-full bg-slate-400 ">
