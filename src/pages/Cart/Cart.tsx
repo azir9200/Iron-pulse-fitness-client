@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppSelector } from "@/redux/hooks";
 import CartDetails from "./CartDetails";
 import OrderSummary from "@/components/SharePages/OrderSummary";
