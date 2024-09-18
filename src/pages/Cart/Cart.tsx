@@ -17,7 +17,9 @@ const Cart = () => {
               <CartDetails key={product.id} product={product} />
             ))
           ) : (
-            <p className="text-2xl text-red-500"> not product found</p>
+            <p className="text-2xl text-center text-red-500">
+              You did not select any product !
+            </p>
           )}
         </div>
         <OrderSummary />
