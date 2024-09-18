@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { useGetProductDetailsQuery } from "@/redux/api/productApi/ProductApi";
 // import { addToCart } from "@/redux/features/cartSlice";
 // import { useAppDispatch, useAppSelector } from "@/redux/hooks";

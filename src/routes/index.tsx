@@ -1,5 +1,4 @@
 import App from "@/App";
-import ProtectedRoute from "@/components/Layout/ProtectedRoute";
 import ContactPage from "@/components/shareHome/Contact";
 import About from "@/pages/About/About";
 import Cart from "@/pages/Cart/Cart";
@@ -37,11 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product/create",
-        element: (
-          <ProtectedRoute>
-            <AddProduct />
-          </ProtectedRoute>
-        ),
+        element:  <AddProduct />
       },
       {
         path: "/product/:id",

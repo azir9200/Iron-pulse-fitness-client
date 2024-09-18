@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { addToCart } from "@/redux/features/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }: { product: any }) => {
   const dispatch = useAppDispatch();
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product: any) => {
     dispatch(addToCart(product));
   };
 
