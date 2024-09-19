@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const { email, password } = useAppSelector((state: RootState) => state.login);
 
-  const [login, { isError, isSuccess }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const navigate = useNavigate(); // Use navigate for redirection
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
