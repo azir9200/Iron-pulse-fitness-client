@@ -13,11 +13,13 @@ import Product from "@/pages/Product/ProductPage";
 import Login from "@/pages/User/Login";
 import Register from "@/pages/User/Register";
 import { createBrowserRouter } from "react-router-dom";
+import ErrorPage from "../components/ErrorPage/ErrorPage.js";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -40,7 +42,7 @@ export const router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
-        path: "/product/:id",
+        path: "/product/update/:id",
         element: <EditProduct />,
       },
       {
@@ -54,7 +56,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/payment",
-        element:<Payment></Payment>
+        element: <Payment></Payment>,
       },
       {
         path: "/contact",

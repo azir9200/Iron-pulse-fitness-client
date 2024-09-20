@@ -9,24 +9,20 @@ const Product = () => {
   const { data: products, error, isLoading } = useGetAllProductQuery(undefined);
   const location = useLocation();
 
-  // Local state for search, selected categories, price filter, and sorting
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
-  // Extract query parameters for category filters (optional)
   const queryParams = new URLSearchParams(location.search);
   const initialCategory = queryParams.get("category");
 
-  // Set initial selected category from URL if present
   useEffect(() => {
     if (initialCategory && !selectedCategories.includes(initialCategory)) {
       setSelectedCategories([...selectedCategories, initialCategory]);
     }
   }, [initialCategory]);
 
-  // Search functionality to filter products by name
   const filteredProducts = products?.data
     .filter((product: any) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -47,7 +43,6 @@ const Product = () => {
       sortOrder === "asc" ? a.price - b.price : b.price - a.price
     );
 
-  // Handle category selection (multiple selections)
   const handleCategorySelection = (category: string) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
@@ -78,7 +73,7 @@ const Product = () => {
     );
 
   return (
-    <div className=" mx-auto mt-16 py-4 w-full">
+    <div className=" mx-auto  py-2 w-full">
       <h1 className="text-4xl text-white text-center font-bold p-4 bg-slate-700">
         {selectedCategories.length > 0
           ? `${selectedCategories.join(", ")} Products`
@@ -134,26 +129,21 @@ const Product = () => {
 
       {/* Category Filters */}
       <div className="flex flex-wrap gap-2 p-4">
-        {[
-          "Cardio",
-          "Strength",
-          "Bicep",
-          "Dumbell",
-          "Kettlebell",
-          "Accessories",
-        ].map((category) => (
-          <button
-            key={category}
-            onClick={() => handleCategorySelection(category.toLowerCase())}
-            className={`p-2 rounded border ${
-              selectedCategories.includes(category.toLowerCase())
-                ? "bg-blue-500 text-white"
-                : "bg-white text-black"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
+        {["Cardio", "Strength", "Bicep", "Dumbell", "Kettlebell"].map(
+          (category) => (
+            <button
+              key={category}
+              onClick={() => handleCategorySelection(category.toLowerCase())}
+              className={`p-2 rounded border ${
+                selectedCategories.includes(category.toLowerCase())
+                  ? "bg-blue-500 text-white"
+                  : "bg-white text-black"
+              }`}
+            >
+              {category}
+            </button>
+          )
+        )}
       </div>
 
       {/* Product Grid */}

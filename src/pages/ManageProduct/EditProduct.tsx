@@ -4,6 +4,7 @@ import {
   useGetProductDetailsQuery,
   useUpdateProductMutation,
 } from "@/redux/api/productApi/ProductApi";
+import Swal from "sweetalert2";
 
 const EditProduct: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get product ID from the URL
@@ -12,7 +13,7 @@ const EditProduct: React.FC = () => {
     isLoading,
     error,
   } = useGetProductDetailsQuery(id); // Fetch product details
-  const [updateProduct] = useUpdateProductMutation(); // Mutation for updating product
+  const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
@@ -37,7 +38,14 @@ const EditProduct: React.FC = () => {
     e.preventDefault();
     try {
       await updateProduct({ id, ...formState }); // Update the product
-      navigate("/products"); // Redirect to product list
+
+      Swal.fire({
+        title: "Product Updated!",
+        text: "The product was updated successfully.",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      navigate("/product");
     } catch (error) {
       console.error("Error updating product:", error);
     }

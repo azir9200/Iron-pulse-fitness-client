@@ -115,7 +115,7 @@ const ProductDetails: React.FC = () => {
   if (error) return <p>Error loading product details</p>;
 
   return (
-    <div className="mx-auto mt-20 py-4 left-0 w-full bg-slate-400">
+    <div className="mx-auto mt-2 py-4 left-0 w-full bg-slate-400">
       <div className="flex flex-col md:flex-row">
         {/* Product Image */}
         <div className="md:w-1/2">

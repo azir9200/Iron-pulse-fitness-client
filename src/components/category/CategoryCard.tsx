@@ -10,11 +10,12 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name, image }) => {
   const navigate = useNavigate();
 
   const handleCategoryClick = () => {
-    navigate(`/products?category=${encodeURIComponent(name)}`);
+    navigate(`/product`);
   };
+
   return (
     <div
-      onClick={handleCategoryClick}
+      onClick={() => handleCategoryClick()}
       className="cursor-pointer bg-white shadow-lg rounded-lg p-4 hover:bg-gray-100 transition transform hover:scale-105"
     >
       <img
