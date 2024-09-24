@@ -2,6 +2,7 @@ import { clearCart } from "@/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { CreditCard, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const OrderSummary = () => {
   const navigate = useNavigate();
@@ -11,6 +12,17 @@ const OrderSummary = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  const handleCheckout = () => {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Payment is successful!, Thank you for being our Customer",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    clearCart();
+  };
+
   return (
     <div className="lg:w-2/4 lg:px-8 w-full h-full items-end justify-end text-right bg-primary bg-opacity-35 rounded">
       <div className="px-6 py-4 space-y-4">
@@ -43,7 +55,9 @@ const OrderSummary = () => {
         <button
           onClick={(e) => {
             e.stopPropagation();
+            handleCheckout();
             navigate("/");
+            handleClearCart();
           }}
           className="bg-green-600 px-3 py-2 text-white  mt-2 rounded-md w-full text-xs flex justify-between items-center"
         >
