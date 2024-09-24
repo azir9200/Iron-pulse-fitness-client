@@ -6,8 +6,6 @@ import Home from "@/pages/Home/Home";
 import AddProduct from "@/pages/ManageProduct/AddProduct";
 import EditProduct from "@/pages/ManageProduct/EditProduct";
 import ProductList from "@/pages/ManageProduct/ProductList";
-import CheckoutForm from "@/pages/Payment/CheckoutForm";
-import Payment from "@/pages/Payment/Payment";
 import ProductDetails from "@/pages/Product/ProductDetails";
 import Product from "@/pages/Product/ProductPage";
 import Login from "@/pages/User/Login";
@@ -53,19 +51,11 @@ export const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
-
-      {
-        path: "/payment",
-        element: <Payment></Payment>,
-      },
       {
         path: "/contact",
         element: <ContactPage />,
       },
-      {
-        path: "/check-pay",
-        element: <CheckoutForm />,
-      },
+
       {
         path: "/about",
         element: <About />,

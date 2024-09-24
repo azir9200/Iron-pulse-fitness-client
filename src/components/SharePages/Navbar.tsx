@@ -1,12 +1,20 @@
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaShoppingCart, FaBars, FaTimes, FaUser } from "react-icons/fa";
+import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { logout } from "@/redux/features/userSlice";
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
   const selectedItems = useAppSelector((store) => store.cart.selectedItems);
   const products = useAppSelector((store) => store.cart.products);
+  const user = useAppSelector((store) => store.user.user);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <nav className="bg-slate-500 p-6 fixed top-0 left-0 w-full z-50">
@@ -30,18 +38,25 @@ const Navbar = () => {
           >
             Products
           </Link>
-          <Link
-            to="/manage/product"
-            className="text-white text-base font-medium hover:text-black"
-          >
-            Manage Products
-          </Link>
-          <Link
-            to="/product/create"
-            className="text-white text-base font-medium hover:text-black"
-          >
-            Add Product
-          </Link>
+
+          {user && user.role === "admin" && (
+            <>
+              {/* Show these links only if user is an admin */}
+              <Link
+                to="/manage/product"
+                className="text-white text-base font-medium hover:text-black"
+              >
+                Manage Products
+              </Link>
+              <Link
+                to="/product/create"
+                className="text-white text-base font-medium hover:text-black"
+              >
+                Add Product
+              </Link>
+            </>
+          )}
+
           <Link
             to="/contact"
             className="text-white text-base font-medium hover:text-black"
@@ -56,33 +71,34 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Search Bar */}
-        <div className="hidden md:flex items-center">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="p-2 rounded-l-md border-none focus:ring-2 focus:ring-blue-300 text-white text-base font-medium "
-          />
-          <button className="bg-white text-black p-2 rounded-r-md hover:bg-slate-700 text-base font-medium">
-            Search
-          </button>
-        </div>
-
-        {/* Cart and User Icons */}
         <div className="hidden md:flex space-x-6 items-center">
-          {/* copy */}
           <Link to="/cart" className="text-white relative hover:text-black">
             <FaShoppingCart size={24} />
-            {/* Display cart item count if there are items in the cart */}
+
             {selectedItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center ">
                 {selectedItems}
               </span>
             )}
           </Link>
-          <Link to="/login" className="text-white hover:text-black">
-            <FaUser size={24} />
-          </Link>
+          {/* Authentication Buttons */}
+          {user ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="text-white text-base font-medium hover:text-black"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="text-white text-base font-medium hover:text-black"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Button */}

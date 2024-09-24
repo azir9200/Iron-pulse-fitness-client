@@ -8,12 +8,15 @@ import {
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
+import { logout } from "../../features/userSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).user.token;
+    console.log("header api", headers);
+    console.log("base api", token);
 
     if (token) {
       headers.set("Authorization", `${token}`);
@@ -48,6 +51,8 @@ const baseQueryWithRefreshToken: BaseQueryFn<
       api.dispatch(setUser({ ...user, token: data.accessToken }));
       console.log("user refresh", user);
       result = await baseQuery(args, api, extraOptions);
+    } else {
+      api.dispatch(logout());
     }
   }
   return result;

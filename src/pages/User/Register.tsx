@@ -8,39 +8,52 @@ import {
   setRole,
 } from "@/redux/features/registerSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./toastStyles.css";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { name, email, password, phone, address, role } = useAppSelector(
     (state) => state.register
   );
 
-  const [signUp, { isError, isSuccess }] = useSignUpMutation();
+  const [signUp] = useSignUpMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const user = await signUp({ name, email, role, phone, address, password });
-    console.log("user=>", user);
-    if (isSuccess) {
-      // Show success toast
-      toast.success("User Registration sSuccessful ! ", {
-        className: "custom-toast--success",
+
+    try {
+      await signUp({
+        name,
+        email,
+        role,
+        phone,
+        address,
+        password,
+      }).unwrap();
+      // toast successful
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Registration is successful!",
+        showConfirmButton: false,
+        timer: 1500,
       });
-    } else if (isError) {
+      navigate("/login");
+    } catch (error) {
       // Show error toast
-      toast.error("Registration failed! Please try again.", {
-        className: "custom-toast-error",
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Registration failed! Please try again.",
       });
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-400 to-blue-200 mt-20">
+    <div className=" mx-auto ">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-400 to-blue-200 ">
         <div className="w-full max-w-md p-8 bg-slate-600 shadow-md rounded-lg">
           <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
             Register
@@ -111,7 +124,6 @@ const Register: React.FC = () => {
               </button>
             </div>
           </form>
-          <ToastContainer autoClose={2000} />
           <p className="text-sm text-center text-gray-600 mt-4">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-500 hover:underline">

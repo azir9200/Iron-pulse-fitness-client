@@ -2,7 +2,7 @@ import { baseApi } from "../baseApi/baseApi";
 
 const payIntentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    creteIntent: builder.mutation({
+    createIntent: builder.mutation({
       query: (data) => {
         return {
           method: "POST",
@@ -13,4 +13,4 @@ const payIntentApi = baseApi.injectEndpoints({
     }),
   }),
 });
-export const { useCreteIntentMutation } = payIntentApi;
+export const { useCreateIntentMutation } = payIntentApi;

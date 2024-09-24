@@ -1,19 +1,12 @@
-import {
-  useDeleteProductMutation,
-  useGetAllProductQuery,
-} from "@/redux/api/productApi/ProductApi";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useGetAllProductQuery } from "@/redux/api/productApi/ProductApi";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ProductList: React.FC = () => {
-  const {
-    data: response,
-    error,
-    isLoading,
-    refetch,
-  } = useGetAllProductQuery(undefined);
-  const [deleteProduct] = useDeleteProductMutation();
+  const { data: response, error, isLoading } = useGetAllProductQuery(undefined);
+
   const products = response?.data || [];
   const [remain, setRemain] = useState(products);
 
@@ -32,38 +25,71 @@ const ProductList: React.FC = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        try {
-          const { data: deletedProduct } = await deleteProduct(_id);
-          if (deletedProduct) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Product has been deleted",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+        
+        const remaining = remain.filter((product: any) => product._id !== _id);
+        setRemain(remaining);
 
-            // Update remaining products after deletion
-            const remaining = remain.filter(
-              (product: any) => product._id !== _id
-            );
-            setRemain(remaining);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Product has been deleted from UI",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
-            // Optionally refetch the list to ensure fresh data
-            refetch();
-          }
-        } catch (err) {
-          Swal.fire(
-            "Error!",
-            "There was a problem deleting the product.",
-            "error"
-          );
-        }
+        // Optionally refetch the list to ensure fresh data from backend
+        // refetch();
       }
     });
   };
+
+  // // Delete product
+  // const handleDelete = async (_id: string) => {
+  //   // Confirmation before deletion
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   })
+  //   .then(async (result) => {
+  //     if (result.isConfirmed) {
+  //       try {
+  //         const { data: deletedProduct } = await deleteProduct(_id);
+  //         if (deletedProduct) {
+
+  //           Swal.fire({
+  //             position: "top-end",
+  //             icon: "success",
+  //             title: "Product has been deleted",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //           });
+
+  //           // Update remaining products after deletion
+  //           const remaining = remain.filter(
+  //             (product: any) => product._id !== _id
+  //           );
+  //           setRemain(remaining);
+
+  //           // Optionally refetch the list to ensure fresh data
+  //           refetch();
+  //         }
+  //       } catch (err) {
+  //         Swal.fire(
+  //           "Error!",
+  //           "There was a problem deleting the product.",
+  //           "error"
+  //         );
+  //       }
+  //     }
+  //   });
+  // };
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading products</p>;

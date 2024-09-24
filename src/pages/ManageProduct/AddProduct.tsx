@@ -74,7 +74,7 @@ const AddProduct: React.FC = () => {
             name="price"
             value={formData.price}
             onChange={handleChange}
-            placeholder="Price"
+            placeholder=" Price Price"
             className="border p-2 w-full bg-slate-200"
             required
           />

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -49,7 +50,7 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.products = state.products.filter(
-        (product) => product._id !== action.payload._id
+        (product: any) => product._id !== action.payload._id
       );
       state.selectedItems = selectSelectedItems(state);
       console.log("cart count", state.selectedItems);
