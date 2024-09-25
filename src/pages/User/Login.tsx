@@ -125,7 +125,6 @@ const Login = () => {
       const result = await login({ email, password }).unwrap();
       const user = verifyToken(result.data.accessToken);
       dispatch(setUser({ user: user, token: result.data.accessToken }));
-      console.log(" az", user);
 
       if (result.success && result.data?.accessToken) {
         Swal.fire({

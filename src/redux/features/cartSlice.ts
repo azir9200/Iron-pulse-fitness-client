@@ -33,7 +33,7 @@ export const cartSlice = createSlice({
       state.grandTotal = selectGrandTotal(state);
     },
     updateQuantity: (state: any, action) => {
-      const products = state.products.map((product: any) => {
+      state.products.map((product: any) => {
         if (product._id === action.payload._id) {
           if (action.payload.type === "increment") {
             product.quantity += 1;

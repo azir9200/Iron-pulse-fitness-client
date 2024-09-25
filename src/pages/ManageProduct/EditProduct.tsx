@@ -12,7 +12,7 @@ const EditProduct: React.FC = () => {
     data: productDetails,
     isLoading,
     error,
-  } = useGetProductDetailsQuery(id); // Fetch product details
+  } = useGetProductDetailsQuery(id as string); // Fetch product details
   const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
 

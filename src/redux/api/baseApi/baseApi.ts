@@ -11,12 +11,11 @@ import {
 import { logout } from "../../features/userSlice";
 
 const baseQuery = fetchBaseQuery({
+  // baseUrl: "https://better-manage-system.vercel.app/api",
   baseUrl: "http://localhost:5000/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).user.token;
-    console.log("header api", headers);
-    console.log("base api", token);
 
     if (token) {
       headers.set("Authorization", `${token}`);
@@ -37,6 +36,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     console.log("base, token", result);
 
     const refreshResult = await fetch(
+      //  "https://better-manage-system.vercel.app/api",
       "http://localhost:5000/api/auth/refresh-token",
       {
         method: "POST",
