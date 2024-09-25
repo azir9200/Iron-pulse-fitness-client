@@ -12,6 +12,7 @@ import Login from "@/pages/User/Login";
 import Register from "@/pages/User/Register";
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../components/ErrorPage/ErrorPage.js";
+import ProtectedRoute from "@/components/Layout/ProtectedRoute.js";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +50,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <Cart />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/contact",

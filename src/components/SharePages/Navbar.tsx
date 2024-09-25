@@ -39,23 +39,18 @@ const Navbar = () => {
             Products
           </Link>
 
-          {user && user.role === "admin" && (
-            <>
-              {/* Show these links only if user is an admin */}
-              <Link
-                to="/manage/product"
-                className="text-white text-base font-medium hover:text-black"
-              >
-                Manage Products
-              </Link>
-              <Link
-                to="/product/create"
-                className="text-white text-base font-medium hover:text-black"
-              >
-                Add Product
-              </Link>
-            </>
-          )}
+          <Link
+            to="/manage/product"
+            className="text-white text-base font-medium hover:text-black"
+          >
+            Manage Products
+          </Link>
+          <Link
+            to="/product/create"
+            className="text-white text-base font-medium hover:text-black"
+          >
+            Add Product
+          </Link>
 
           <Link
             to="/contact"
