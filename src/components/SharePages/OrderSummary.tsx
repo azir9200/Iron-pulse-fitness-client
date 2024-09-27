@@ -56,7 +56,7 @@ const OrderSummary = () => {
           onClick={(e) => {
             e.stopPropagation();
             handleCheckout();
-            navigate("/");
+            navigate("/payment");
             handleClearCart();
           }}
           className="bg-green-600 px-3 py-2 text-white  mt-2 rounded-md w-full text-xs flex justify-between items-center"

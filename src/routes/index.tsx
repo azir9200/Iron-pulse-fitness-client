@@ -13,6 +13,7 @@ import Register from "@/pages/User/Register";
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../components/ErrorPage/ErrorPage.js";
 import ProtectedRoute from "@/components/Layout/ProtectedRoute.js";
+import Payment from "@/pages/Payment/Payment.js";
 
 export const router = createBrowserRouter([
   {
@@ -34,15 +35,30 @@ export const router = createBrowserRouter([
       },
       {
         path: "/manage/product",
-        element: <ProductList />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <ProductList />{" "}
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/product/create",
-        element: <AddProduct />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <AddProduct />{" "}
+          </ProtectedRoute>
+        ),
       },
+
       {
         path: "/product/update/:id",
-        element: <EditProduct />,
+        element: (
+          <ProtectedRoute>
+            <EditProduct />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/product/:category",
@@ -60,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
 
       {

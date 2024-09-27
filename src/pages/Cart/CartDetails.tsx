@@ -33,7 +33,7 @@ const CartDetails = ({ product }: any) => {
             <button
               onClick={() => handleQuantity("decrement", product._id)} // Use _id instead of id
               className="bg-sky-700 text-white p-2 rounded-full hover:bg-green-800"
-              disabled={product.quantity === 1} 
+              disabled={product.quantity === 1}
             >
               Less
               {/* <Minus size={18} /> */}
@@ -44,15 +44,13 @@ const CartDetails = ({ product }: any) => {
               className="bg-blue-700 text-white p-2 rounded-full hover:bg-green-800"
             >
               More
-          
             </button>
 
             <button
-              onClick={() => handleRemove(product._id)} // 
+              onClick={() => handleRemove(product._id)} //
               className="bg-gray-300 text-black  rounded-full hover:bg-red-700"
             >
               Remove
-             
             </button>
           </div>
         </div>

@@ -8,7 +8,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const selectedItems = useAppSelector((store) => store.cart.selectedItems);
   const products = useAppSelector((store) => store.cart.products);
-  const user = useAppSelector((store) => store.user.user);
+  const loggedUser = useAppSelector((store) => store.user.user);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -76,8 +76,21 @@ const Navbar = () => {
               </span>
             )}
           </Link>
+          {/* <span>
+         
+            if(loggedUser.admin)
+             
+                <button
+                  onClick={handleLogout}
+                  className="text-white text-base font-medium hover:text-black"
+                >
+                  Admin
+                </button>
+            
+            }{" "}
+          </span> */}
           {/* Authentication Buttons */}
-          {user ? (
+          {loggedUser ? (
             <>
               <button
                 onClick={handleLogout}
